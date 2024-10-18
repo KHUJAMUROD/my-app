@@ -1,17 +1,42 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Header } from './App';
+import { Button } from './App';
+import styled from 'styled-components';
+
+
+// const elem = <h2 class="greetings">Hello World!</h2>;
+const BigButton = styled(Button)`
+  margin: 0 auto;
+  width: 245px;
+`
+const text = 'Hello World!'
+
+
+const elem = (
+  <div>
+    <h1>Text: {text}</h1>
+    {/* <h1 class='testclass'>Text: {4+4}</h1>  error class*/}
+    <h1 className='testclass'>Text: {4 + 4}</h1>
+    <h1>Text: {['2314', '1234234', '398739']}</h1>
+    <h1>Text: {['2314', '1234234', '398739', '{}']}</h1>
+    <label htmlFor="testlabel">TestattributeFor</label><br />
+    <input id='testlabel' type="text" />
+    <button>button</button>
+    <button />
+  </div>
+)
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // elem
+  <StrictMode>
     <App />
-  </React.StrictMode>
+    <BigButton as="a">+++</BigButton>
+  </StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
