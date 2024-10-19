@@ -4,8 +4,12 @@ import './index.css';
 import App from './App';
 import { Header } from './App';
 import { Button } from './App';
+import BootstrapTest from './Bootstraptest';
+
 import styled from 'styled-components';
 
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // const elem = <h2 class="greetings">Hello World!</h2>;
 const BigButton = styled(Button)`
@@ -36,7 +40,8 @@ root.render(
   // elem
   <StrictMode>
     <App />
-    <BigButton as="a">+++</BigButton>
+    <BigButton as="a">Отправить отчет</BigButton>
+    <BootstrapTest />
   </StrictMode>
 );
 
