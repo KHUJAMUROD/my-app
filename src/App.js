@@ -200,7 +200,15 @@ class WhoAmI extends Component {
 const Wrapper = styled.div`
     width: 600px;
     margin: 80px auto 0 auto; 
-`
+`;
+
+const DynamicGreating = (props) => {
+  return (
+    <div className={'mb-3 p-3 border border-' + props.color}>
+      {props.children}
+    </div>
+  )
+}
 
 
 function App() {
@@ -209,6 +217,12 @@ function App() {
       {/* <WhoAmI name={{firstname: "Murod"}} surname="Xujanov" link="instagramm.com" /> */}
       {/* <WhoAmI name={{firstname: "UZGAMER"}} surname="Baratov" link="vk.com" /> */}
       {/* <WhoAmI name={() => { return 'DalerCheff' }} surname="Aslidinov" link="vk.com" /> */}
+
+    <DynamicGreating color={'primary'}>
+      <h2>This weel was hard</h2>
+      <h2>Hello world!</h2>
+    </DynamicGreating>
+
       <WhoAmI name='DalerCheff' surname="Aslidinov" link="vk.com" />
       <WhoAmI name="Ulug'bek" surname="AirJordan" link="vk.com" />
     </Wrapper>
