@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import styled from 'styled-components';
 
 import './App.css';
@@ -205,7 +205,11 @@ const Wrapper = styled.div`
 const DynamicGreating = (props) => {
   return (
     <div className={'mb-3 p-3 border border-' + props.color}>
-      {props.children}
+      {
+        React.Children.map{props.children, (child) => {
+          return React.cloneElement(child, {className: 'shadow p-3 m-3 border rounded'})
+        }}
+      }
     </div>
   )
 }
