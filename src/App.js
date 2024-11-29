@@ -226,12 +226,50 @@ const HelloGreating = () => {
   )
 }
 
+const Message = (props) => {
+  return (
+    <h2> The counter is {props.counter}</h2>
+    
+  )
+}
+
+class Counter extends Component {
+  state = {
+    counter: 0
+  }
+
+  changeCounter = () => {
+    this.setState(({counter}) => ({
+      counter: counter + 1
+    }))
+  }
+
+  render() {
+    return (
+      <>
+        <button
+          className={'btn btn-primary'}
+          onClick={this.changeCounter}>
+          Click Me
+        </button>
+        {/* <Message counter={this.state.counter}/> Можно удалить это без полезно  */}
+        {this.props.some(this.state.counter)}
+        {this.props.some(this.state.counter)}
+      </>
+    )
+  }
+}
 function App() {
   return (
     <Wrapper>
       {/* <WhoAmI name={{firstname: "Murod"}} surname="Xujanov" link="instagramm.com" /> */}
       {/* <WhoAmI name={{firstname: "UZGAMER"}} surname="Baratov" link="vk.com" /> */}
       {/* <WhoAmI name={() => { return 'DalerCheff' }} surname="Aslidinov" link="vk.com" /> */}
+    
+      <Counter some={counter => (
+        <Message counter={counter}/>
+      )}/>
+
       <HelloGreating/>
       <BootstrapTest
         left={
@@ -257,3 +295,10 @@ function App() {
 
 
 export default App;
+
+// Page
+//     div
+// Page
+//     from
+// Page
+//     span
