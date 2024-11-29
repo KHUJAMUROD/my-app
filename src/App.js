@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
+import BootstrapTest from './Bootstraptest';
+
 
 import './App.css';
 
@@ -206,9 +208,9 @@ const DynamicGreating = (props) => {
   return (
     <div className={'mb-3 p-3 border border-' + props.color}>
       {
-        React.Children.map{props.children, (child) => {
-          return React.cloneElement(child, {className: 'shadow p-3 m-3 border rounded'})
-        }}
+        React.Children.map(props.children, (child) => {
+          return React.cloneElement(child, { className: 'shadow p-3 m-3 border rounded' })
+        })
       }
     </div>
   )
@@ -222,10 +224,23 @@ function App() {
       {/* <WhoAmI name={{firstname: "UZGAMER"}} surname="Baratov" link="vk.com" /> */}
       {/* <WhoAmI name={() => { return 'DalerCheff' }} surname="Aslidinov" link="vk.com" /> */}
 
-    <DynamicGreating color={'primary'}>
-      <h2>This weel was hard</h2>
-      <h2>Hello world!</h2>
-    </DynamicGreating>
+
+
+      <BootstrapTest
+        left={
+          <DynamicGreating color={'primary'}>
+            <h2>This weel was hard</h2>
+            <h2>Hello world!</h2>
+          </DynamicGreating>
+        }
+
+        right={
+          <DynamicGreating color={'primary'}>
+            <h2>RIGHT!</h2>
+          </DynamicGreating>
+        }
+
+      />
 
       <WhoAmI name='DalerCheff' surname="Aslidinov" link="vk.com" />
       <WhoAmI name="Ulug'bek" surname="AirJordan" link="vk.com" />

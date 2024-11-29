@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import { Header } from './App';
 import { Button } from './App';
-import BootstrapTest from './Bootstraptest';
+// import BootstrapTest from './Bootstraptest';
 
 import styled from 'styled-components';
 
@@ -41,7 +41,7 @@ root.render(
   <StrictMode>
     <App />
     <BigButton as="a">Отправить отчет</BigButton>
-    <BootstrapTest />
+    {/* <BootstrapTest />  */}
   </StrictMode>
 );
 
