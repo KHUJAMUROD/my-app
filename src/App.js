@@ -7,26 +7,32 @@ class Form extends Component {
     // myRef = React.createRef();
     // // mySecondRef = React.createRef();
 
-    // componentDidMount() {
-    //     this.myRef.current.focus();
-    // }
-    setInputRef = elem => {
-        this.myRef = elem;
+    componentDidMount() {
+        // this.myRef.current.focus();
+        setTimeout(this.handleClick, 300)
     }
-    focusFirstTI = () => {
-        if (this.myRef) {
-            this.myRef.current.focus();
-        }
+    // setInputRef = elem => {
+    //     this.myRef = elem;
+    // }
+    // focusFirstTI = () => {
+    //     if (this.myRef) {
+    //         this.myRef.current.focus();
+    //     }
+    // }
+
+    handleClick = () => {
+        // console.log('click');
+        this.setState(({advOpen}) => ({
+            advOpen: !advOpen
+        }))
     }
 
     render() {
         return (
             <Container>
-                <form className="w-50 border mt-5 p-3 m-auto"
-                    style={{
-                        'overflow': 'hidden',
-                        'position': 'relative'
-                    }}>
+                <form onClick={this.handleClick} className="w-50 border mt-5 p-3 m-auto"
+                    style={{'overflow': 'hidden',
+                            'position': 'relative'}}>
                     <div className="mb-3">
                         <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
                         <input
@@ -40,6 +46,13 @@ class Form extends Component {
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
                         <textarea onClick={this.focusFirstTI} className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
+                    {
+                       this.state.advOpen ? 
+
+                        <Portal>
+                            <Msg />
+                        </Portal> : null
+                    }
                 </form>
             </Container>
         )
@@ -59,6 +72,13 @@ class Form extends Component {
 //     }
 // }
 
+const Portal = (props) => {
+    const node = document.createElement('div');
+    document.body.appendChild(node);
+
+    return ReactDOM.createPortal(props.children, node);
+}
+
 const Msg = () => {
     return (
         <div
@@ -67,9 +87,8 @@ const Msg = () => {
                 'height': '150px',
                 'backgroundColor': 'red',
                 'position': 'absolute',
-                'right': '-50%',
-                'bottom': '-50%'
-            }}>
+                'right': '0%',
+                'bottom': '0%'}}>
             Hello
         </div>
     )
