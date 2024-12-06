@@ -22,7 +22,7 @@ const text = 'Hello World!'
 const elem = (
   <div>
     <h1>Text: {text}</h1>
-    {/* <h1 class='testclass'>Text: {4+4}</h1>  error class*/}
+    <h1 class='testclass'>Text: {4+4}</h1>  error class
     <h1 className='testclass'>Text: {4 + 4}</h1>
     <h1>Text: {['2314', '1234234', '398739']}</h1>
     <h1>Text: {['2314', '1234234', '398739', '{}']}</h1>
