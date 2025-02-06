@@ -1,4 +1,4 @@
-import { useState, memo, Component, useCallback } from 'react';
+import { useState, Component, createContext } from 'react';
 import { Container } from 'react-bootstrap';
 import './App.css';
 
@@ -87,7 +87,14 @@ import './App.css';
 //     return prevProps.mail.name === nextProps.mail.name && prevProps.text === nextProps.text;
 // }
 
-const Form = memo((props) => {
+const [data, setData] = useState({
+    mail: "name@example.com",
+    text: "some text"
+});
+
+const {Provider, Consumer} = dataContext;
+
+const Form = (props) => {
     console.log('render');
 
 
@@ -119,21 +126,12 @@ const Form = memo((props) => {
                 <div className="mb-3">
                     {/* <input type="text" value={`${input.value} / ${textArea.value}`} className='form-control' readOnly /> */}
                     <label htmlFor="exampleFormControlInput1" className="form-label mt-3">Email address</label>
-                    <input
-                        // onChange={input.onChange}
-                        type="email"
-                        value={props.mail}
-                        className='form-control'
-                        // className={`form-control ${color}`}
-                        id="exampleFormControlInput1"
-                        placeholder="name@example.com" />
+                    <InputComponent mail={props.mail} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
                     <textarea
-                        // onChange={textArea.onChange}
                         value={props.text}
-                        // onClick={() => myRef.current + 1}
                         className="form-control"
                         id="exampleFormControlTextarea1"
                         rows="3"></textarea>
@@ -141,9 +139,20 @@ const Form = memo((props) => {
             </form>
         </Container>
     )
+};
+
+class InputComponent extends Component {
+    render() {
+        return (
+            <input value={this.props.mail} className="form-control" placeholder="name@example.com" />
+        )
+    }
+}
+
+const dataContext = createContext({
+    mail: "name@example.com",
+    text: "some text"
 });
-
-
 
 function App() {
 
@@ -154,17 +163,8 @@ function App() {
     //     text: "some text"
     // })
 
-    const [data, setData] = useState({
-        mail: "name@example.com",
-        text: "some text"
-    })
-
-    const onLog = useCallback(() => {
-        console.log('wow');  
-    }, []);
-
     return (
-        <>
+        <Provider value={data}>
             {/* <Form mail={data.mail} text={data.text} />
             <button onClick={() => setData({
                 mail: {
@@ -173,15 +173,16 @@ function App() {
                 text: "some text"
             })}> */}
 
-            <Form mail={data.mail} text={data.text} onLog={onLog} />
-            <button onClick={() => setData({
-                mail: "name@example.com",
-                text: "some text"
-            })}>
-                    Click me
-                </button>
-            </>
-            );
+            <Form mail={data.mail} text={data.text} />
+            <button
+                onClick={() => setData({
+                    mail: "name@example.com",
+                    text: "some text"
+                })}>
+                Click me
+            </button>
+        </Provider>
+    );
 };
 
-            export default App;
+export default App;
