@@ -6,7 +6,7 @@ class Form extends Component {
 
     shouldComponentUpdate(nextProps) {
         if (this.props.mail.name === nextProps.mail.name) {
-            return false;
+            return true;
         }
 
     }
@@ -46,7 +46,7 @@ class Form extends Component {
                         <input
                             // onChange={input.onChange}
                             type="email"
-                            value={this.props.mail}
+                            value={this.props.mail.name}
                             className='form-control'
                             // className={`form-control ${color}`}
                             id="exampleFormControlInput1"
